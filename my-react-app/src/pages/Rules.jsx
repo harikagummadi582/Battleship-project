@@ -5,7 +5,7 @@ function Rules() {
   return (
     <>
       <Navbar />
-      <div>
+      <div className="container">
         <h1>Rules</h1>
         <p>These are the rules of the game.</p>
       </div>

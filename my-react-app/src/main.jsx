@@ -7,6 +7,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NotFound from "./pages/NotFound.jsx";
 import Highscore from "./pages/HighScores.jsx";
+import Game from "./pages/Game.jsx";
+import Easy from "./pages/Freeplay.jsx";
+import Normal from "./pages/Normal.jsx";
 
 const BrowserRouter = createBrowserRouter([
   {
@@ -16,6 +19,9 @@ const BrowserRouter = createBrowserRouter([
   },
   { path: "/rules", element: <Rules /> },
   { path: "/scores", element: <Highscore /> },
+  { path: "/game", element: <Game /> },
+  { path: "/game/freeplay", element: <Easy /> },
+  { path: "/game/normal", element: <Normal /> },
 ]);
 
 createRoot(document.getElementById("root")).render(
