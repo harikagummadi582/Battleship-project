@@ -5,7 +5,7 @@ function Highscore() {
   return (
     <>
       <Navbar />
-      <div>
+      <div className="container">
         <h1>HighScores</h1>
         <p>These are the scores</p>
       </div>
