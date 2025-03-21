@@ -1,20 +1,30 @@
-// Grid.js
 import React from "react";
-import Cell from "./Cell"; // Import the Cell component
+import { useGameContext } from "../context/GameContext";
+import Cell from "./Cell";
 
 const Board = () => {
-  const rows = 10; // Number of rows
-  const cols = 10; // Number of columns
+  const { cellStates, handleCellClick } = useGameContext();
 
-  // Create an array of rows and columns dynamically
+  const rows = 10;
+  const cols = 10;
+
+  // Create the grid with cells
   const grid = [];
   for (let i = 0; i < rows; i++) {
     const colsArray = [];
     for (let j = 0; j < cols; j++) {
-      colsArray.push(<Cell key={`${i}-${j}`} />);
+      colsArray.push(
+        <Cell
+          key={`${i}-${j}`}
+          row={i}
+          col={j}
+          clicked={cellStates[i][j]} // Pass the clicked state of each cell
+          onClick={handleCellClick} // Pass the handleCellClick function
+        />
+      );
     }
     grid.push(
-      <div key={i} className="board-row">
+      <div key={i} className="row">
         {colsArray}
       </div>
     );
