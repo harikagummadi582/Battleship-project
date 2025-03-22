@@ -80,13 +80,15 @@ export const GameProvider = ({ children }) => {
     Array.from({ length: BOARD_SIZE }, () => Array(BOARD_SIZE).fill(0))
   );
 
+  // State to track the number of ships sunk
+  const [shipsSunk, setShipsSunk] = useState(0);
+
   // Place ships on the board once the component is mounted
   useEffect(() => {
     const newBoard = [...board]; // Create a copy of the initial board
     SHIP_SIZES.forEach((shipSize) => {
       placeShip(newBoard, shipSize); // Place the ship on the copied board
     });
-    console.log(newBoard, countOnes(newBoard));
     setBoard(newBoard); // Update the board state with the newly placed ships
   }, []); // Empty dependency array means this runs only once after the first render
 
@@ -97,12 +99,15 @@ export const GameProvider = ({ children }) => {
       newCellStates[row][col] = 2; // Mark as miss (empty space clicked)
     } else if (board[row][col] === 1) {
       newCellStates[row][col] = 3; // Mark as hit (ship clicked)
+      setShipsSunk((count) => count + 1); // Increment the number of ships sunk
     }
     setCellStates(newCellStates); // Update the cell state
   };
 
   return (
-    <GameContext.Provider value={{ board, cellStates, handleCellClick }}>
+    <GameContext.Provider
+      value={{ board, shipsSunk, cellStates, handleCellClick }}
+    >
       {children}
     </GameContext.Provider>
   );
