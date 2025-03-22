@@ -24,9 +24,7 @@ function Cell({ row, col, clicked, onClick }) {
         className={`cell btn ${getButtonClass()}`}
         onClick={handleClick}
         disabled={clicked === 2 || clicked === 3}
-      >
-        {clicked}
-      </button>
+      ></button>
     </div>
   );
 }

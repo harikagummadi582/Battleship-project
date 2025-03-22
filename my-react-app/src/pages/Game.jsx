@@ -10,12 +10,16 @@ function Game() {
       <div className="container">
         <h1>Game</h1>
         <p>This is the game page</p>
-        <button type="button" class="btn btn-info">
-          <Link to="/game/normal">Normal</Link>
-        </button>
-        <button type="button" class="btn btn-info">
-          <Link to="/game/freeplay">Freeplay</Link>
-        </button>
+        <Link to="/game/normal">
+          <button type="button" class="btn btn-info">
+            Normal
+          </button>
+        </Link>
+        <Link to="/game/freeplay">
+          <button type="button" class="btn btn-info">
+            Freeplay
+          </button>
+        </Link>
       </div>
     </>
   );
