@@ -1,19 +1,16 @@
-import React from "react";
-import { useGameContext } from "../context/GameContext";
+import React, { use } from "react";
 import Cell from "./Cell";
+import { useFreeplayContext } from "../context/FreeplayContext";
 
-const Board = () => {
-  const { cellStates, handleCellClick } = useGameContext();
-
+const Board = ({ cellStates, handleCellClick }) => {
   const rows = 10;
   const cols = 10;
 
   // Create the grid with cells
   const grid = [];
   for (let i = 0; i < rows; i++) {
-    const colsArray = [];
     for (let j = 0; j < cols; j++) {
-      colsArray.push(
+      grid.push(
         <Cell
           key={`${i}-${j}`}
           row={i}
@@ -23,14 +20,9 @@ const Board = () => {
         />
       );
     }
-    grid.push(
-      <div key={i} className="row">
-        {colsArray}
-      </div>
-    );
   }
 
-  return <div className="container text-center">{grid}</div>;
+  return <div className="board center">{grid}</div>;
 };
 
 export default Board;
