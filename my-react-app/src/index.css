@@ -1,7 +1,3 @@
-.cell {
-  width: 25px;
-  height: 25px;
-}
 
 .board {
   display: grid;
@@ -9,4 +5,40 @@
   grid-template-columns: repeat(10, 1fr); /* 10 columns of equal width */
   grid-template-rows: repeat(10, 1fr); /* 10 rows of equal height */
   gap: 5px;
+}
+
+
+
+/* This class will make the container take up the full screen height */
+.normal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  height: 100vh; /* Full screen height */
+  padding: 20px;
+}
+
+/* Board container will hold the grid layout for the board */
+.board-container {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr); /* 10 columns of equal width */
+  grid-template-rows: repeat(10, 1fr); /* 10 rows of equal height */
+  gap: 5px;
+  width: 400px; /* Fixed width for the board */
+  margin-bottom: 20px; /* Space between board and content below */
+}
+
+/* Style for each cell */
+.cell {
+  width: 25px;
+  height: 25px;
+  padding-bottom: 100%; /* Create square cells */
+  position: relative; 
+  background-color: #ddd; /* Default color */
+}
+
+/* Optional: Add hover effect or styles for cells */
+.cell:hover {
+  background-color: #b0b0b0;
 }

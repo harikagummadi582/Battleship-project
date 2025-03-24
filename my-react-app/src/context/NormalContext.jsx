@@ -2,7 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 
 const BOARD_SIZE = 10; // Size of the board
 const SHIP_SIZES = [5, 4, 3, 3, 2]; // Ship sizes
-
+const shipToSink = 17;
 const NormalContext = createContext();
 
 function AIgame(board) {
@@ -148,7 +148,7 @@ export const NormalProvider = ({ children }) => {
 
     setTimeout(() => {
       const newCellStates = [...myBoardUI];
-      if (myShipsSunk < 17) {
+      if (myShipsSunk < shipToSink) {
         const { row, col } = AIgame(myBoard);
         if (myBoard[row][col] === 0) {
           newCellStates[row][col] = 2;
@@ -164,14 +164,12 @@ export const NormalProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (opShipsSunk === 17) {
-      console.log("Here");
+    if (opShipsSunk === shipToSink) {
       setModalTitle("Congratulations!");
       setModalContent(`You have sunk all the ships in ${timeElapsed} seconds!`);
       setTimerRunning(false);
     }
-    if (myShipsSunk === 17) {
-      console.log("There");
+    if (myShipsSunk === shipToSink) {
       setModalTitle("Game Over!");
       setModalContent(`You have lost the game in ${timeElapsed} seconds!`);
       setTimerRunning(false);
@@ -179,7 +177,7 @@ export const NormalProvider = ({ children }) => {
   }, [myShipsSunk, opShipsSunk]);
 
   useEffect(() => {
-    if (opShipsSunk === 17 || myShipsSunk === 17) {
+    if (opShipsSunk === shipToSink || myShipsSunk === shipToSink) {
       console.log(modalTitle, modalContent);
       setShowModal(true);
     }
