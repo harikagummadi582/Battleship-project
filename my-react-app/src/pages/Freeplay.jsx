@@ -35,7 +35,9 @@ function Freeplay() {
       >
         <h1>Freeplay</h1>
         <Timer timeElapsed={timeElapsed} />
-        <Board cellStates={cellStates} handleCellClick={handleCellClick} />
+        <center>
+          <Board cellStates={cellStates} handleCellClick={handleCellClick} />
+        </center>
       </div>
       <Modal
         showModal={showModal}

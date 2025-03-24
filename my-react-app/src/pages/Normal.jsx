@@ -30,9 +30,9 @@ function Normal() {
       >
         <Timer timeElapsed={timeElapsed} />
         <h1>Normal</h1>
-        <h2>Opponent Board - Ships sunk:{opShipsSunk}</h2>
+        <h2>Opponent Board </h2>
         <Board cellStates={opBoardUI} handleCellClick={handleOpBoardClick} />
-        <h2>My Board - Ships Sunk:{myShipsSunk}</h2>
+        <h2>My Board </h2>
         <Board cellStates={myBoardUI} handleCellClick={handleMyBoardClick} />
       </div>
       <Modal
@@ -51,7 +51,7 @@ function Normal() {
         aria-hidden={!buildShipModal}
         style={{ display: buildShipModal ? "block" : "none" }}
       >
-        <div className="modal-dialog">
+        <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="staticBackdropLabel">
@@ -59,10 +59,12 @@ function Normal() {
               </h5>
             </div>
             <div className="modal-body">
-              <Board
-                cellStates={myBoard}
-                handleCellClick={handleMyBoardClick}
-              />
+              <center>
+                <Board
+                  cellStates={myBoard}
+                  handleCellClick={handleMyBoardClick}
+                />
+              </center>
             </div>
             <button className="btn btn-danger" onClick={myShipRandom}>
               Random
