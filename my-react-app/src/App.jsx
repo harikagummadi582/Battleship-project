@@ -15,9 +15,11 @@ function App() {
       <div className="container">
         <h1>Homepage</h1>
         <p>This is the homepage</p>
-        <button type="button" class="btn btn-info">
-          <Link to="/game">Start Game</Link>
-        </button>
+        <Link to="/game">
+          <button type="button" className="btn btn-info">
+            Start Game
+          </button>
+        </Link>
       </div>
     </>
   );

@@ -1,94 +1,44 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Board from "../components/Board";
-import { GameProvider, useGameContext } from "../context/GameContext";
+import {
+  FreeplayProvider,
+  useFreeplayContext,
+} from "../context/FreeplayContext";
 import { Link } from "react-router-dom";
-
+import Timer from "../components/Timer";
+import Modal from "../components/Modal";
 function Freeplay() {
-  const { shipsSunk } = useGameContext();
+  const { shipsSunk } = useFreeplayContext();
+  const { timeElapsed } = useFreeplayContext();
   const [showModal, setShowModal] = useState(false);
-  const [timeElapsed, setTimeElapsed] = useState(0);
-  const [timerRunning, setTimerRunning] = useState(true);
-
-  // Effect to open the modal when shipsSunk reaches 17
-  useEffect(() => {
-    if (shipsSunk === 17) {
-      setShowModal(true);
-      setTimerRunning(false);
-    }
-  }, [shipsSunk]);
-
-  // Timer effect
-  useEffect(() => {
-    if (timerRunning) {
-      const timerInterval = setInterval(() => {
-        setTimeElapsed((prevTime) => prevTime + 1); // Increment the time every second
-      }, 1000);
-
-      // Cleanup the interval when the component unmounts or when the timer stops
-      return () => clearInterval(timerInterval);
-    }
-  }, [timerRunning]);
-
+  const { cellStates, handleCellClick } = useFreeplayContext();
   // Function to close the modal
   const closeModal = () => {
     setShowModal(false);
   };
+  useEffect(() => {
+    if (shipsSunk === 17) {
+      setShowModal(true);
+    }
+  }, [shipsSunk]);
+
+  const modalTitle = "Congratulations!";
+  const modalContent = `You have sunk all the ships in ${timeElapsed} seconds!`;
 
   return (
     <>
       <Navbar />
-      <div className="container">
+      <div className="container ">
         <h1>Freeplay</h1>
-        <p>Time Elapsed: {timeElapsed} seconds</p>
-        <Board />
-        <div
-          className={`modal fade ${showModal ? "show" : ""}`}
-          id="staticBackdrop"
-          data-bs-backdrop="static"
-          data-bs-keyboard="false"
-          tabIndex="-1"
-          aria-labelledby="staticBackdropLabel"
-          aria-hidden={!showModal}
-          style={{ display: showModal ? "block" : "none" }}
-        >
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="staticBackdropLabel">
-                  Congratulations!
-                </h5>
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                  onClick={closeModal}
-                ></button>
-              </div>
-              <div className="modal-body">
-                You have sunk all the ships in {timeElapsed} seconds!
-              </div>
-              <div className="modal-footer">
-                <Link to="/">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                    onClick={closeModal}
-                  >
-                    Home
-                  </button>
-                </Link>
-                <Link to="/game">
-                  <button type="button" className="btn btn-primary">
-                    Play Again
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Timer timeElapsed={timeElapsed} />
+        <Board cellStates={cellStates} handleCellClick={handleCellClick} />
+        <Modal
+          showModal={showModal}
+          closeModal={closeModal}
+          title={modalTitle}
+          message={modalContent}
+        />
       </div>
     </>
   );
@@ -96,8 +46,8 @@ function Freeplay() {
 
 export default function FreeplayPage() {
   return (
-    <GameProvider>
+    <FreeplayProvider>
       <Freeplay />
-    </GameProvider>
+    </FreeplayProvider>
   );
 }

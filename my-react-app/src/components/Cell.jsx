@@ -18,7 +18,7 @@ function Cell({ row, col, clicked, onClick }) {
   };
 
   return (
-    <div className="col">
+    <div>
       <button
         type="button"
         className={`cell btn ${getButtonClass()}`}

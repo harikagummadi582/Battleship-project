@@ -46,30 +46,14 @@ function placeShip(board, shipSize) {
 }
 
 // Create the context
-const GameContext = createContext();
+export const FreeplayContext = createContext();
 
 // Custom hook to access the context
-export const useGameContext = () => {
-  return useContext(GameContext);
+export const useFreeplayContext = () => {
+  return useContext(FreeplayContext);
 };
 
-function countOnes(arr) {
-  let count = 0; // Initialize the counter to 0
-
-  // Loop through each row
-  for (let i = 0; i < arr.length; i++) {
-    // Loop through each column in the row
-    for (let j = 0; j < arr[i].length; j++) {
-      if (arr[i][j] === 1) {
-        count++; // Increment the count for each 1 found
-      }
-    }
-  }
-
-  return count; // Return the final count
-}
-
-export const GameProvider = ({ children }) => {
+export const FreeplayProvider = ({ children }) => {
   // Initialize the board (10x10) with 0s indicating empty spaces
   const [board, setBoard] = useState(
     Array.from({ length: BOARD_SIZE }, () => Array(BOARD_SIZE).fill(0))
@@ -89,6 +73,7 @@ export const GameProvider = ({ children }) => {
     SHIP_SIZES.forEach((shipSize) => {
       placeShip(newBoard, shipSize); // Place the ship on the copied board
     });
+    console.log(newBoard); // Log the board with ships placed
     setBoard(newBoard); // Update the board state with the newly placed ships
   }, []); // Empty dependency array means this runs only once after the first render
 
@@ -104,11 +89,33 @@ export const GameProvider = ({ children }) => {
     setCellStates(newCellStates); // Update the cell state
   };
 
+  const [timeElapsed, setTimeElapsed] = useState(0);
+  const [timerRunning, setTimerRunning] = useState(true);
+
+  useEffect(() => {
+    if (timerRunning) {
+      const timerInterval = setInterval(() => {
+        setTimeElapsed((prevTime) => prevTime + 1); // Increment the time every second
+      }, 1000);
+
+      // Cleanup the interval when the component unmounts or when the timer stops
+      return () => clearInterval(timerInterval);
+    }
+  }, [timerRunning]);
+
+  // Effect to open the modal when shipsSunk reaches 17
+  useEffect(() => {
+    if (shipsSunk === 17) {
+      // setShowModal(true);
+      setTimerRunning(false);
+    }
+  }, [shipsSunk]);
+
   return (
-    <GameContext.Provider
-      value={{ board, shipsSunk, cellStates, handleCellClick }}
+    <FreeplayContext.Provider
+      value={{ board, shipsSunk, cellStates, handleCellClick, timeElapsed }}
     >
       {children}
-    </GameContext.Provider>
+    </FreeplayContext.Provider>
   );
 };
