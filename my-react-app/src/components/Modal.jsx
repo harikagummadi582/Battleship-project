@@ -20,13 +20,6 @@ const Modal = ({ showModal, closeModal, title, message }) => {
             <h5 className="modal-title" id="staticBackdropLabel">
               {title}
             </h5>
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-              onClick={closeModal}
-            ></button>
           </div>
           <div className="modal-body">{message}</div>
           <div className="modal-footer">

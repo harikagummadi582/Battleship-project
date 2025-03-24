@@ -8,7 +8,7 @@ const NormalContext = createContext();
 function AIgame(board) {
   let row = 0,
     col = 0;
-  const pick = Math.random() < 0 ? 0 : 2;
+  const pick = Math.random() < 0.7 ? 0 : 2;
   while (true) {
     row = Math.floor(Math.random() * BOARD_SIZE);
     col = Math.floor(Math.random() * BOARD_SIZE);
@@ -22,15 +22,15 @@ function AIgame(board) {
 function canPlaceShip(board, shipSize, x, y, direction) {
   if (direction === "H") {
     // Horizontal placement
-    if (y + shipSize > BOARD_SIZE) return false; // Check if it fits in the row
+    if (y + shipSize > BOARD_SIZE) return false;
     for (let i = 0; i < shipSize; i++) {
-      if (board[x][y + i] !== 0) return false; // Check if the spot is already occupied
+      if (board[x][y + i] !== 0) return false;
     }
   } else if (direction === "V") {
     // Vertical placement
-    if (x + shipSize > BOARD_SIZE) return false; // Check if it fits in the column
+    if (x + shipSize > BOARD_SIZE) return false;
     for (let i = 0; i < shipSize; i++) {
-      if (board[x + i][y] !== 0) return false; // Check if the spot is already occupied
+      if (board[x + i][y] !== 0) return false;
     }
   }
   return true;
@@ -40,7 +40,7 @@ function canPlaceShip(board, shipSize, x, y, direction) {
 function placeShip(board, shipSize, val = 1) {
   let placed = false;
   while (!placed) {
-    const direction = Math.random() < 0.5 ? "H" : "V"; // Randomly choose a direction (H or V)
+    const direction = Math.random() < 0.5 ? "H" : "V";
     const x = Math.floor(Math.random() * BOARD_SIZE);
     const y = Math.floor(Math.random() * BOARD_SIZE);
 
@@ -48,11 +48,11 @@ function placeShip(board, shipSize, val = 1) {
       // Place the ship on the board
       if (direction === "H") {
         for (let i = 0; i < shipSize; i++) {
-          board[x][y + i] = val; // Mark the cells with the ship's size
+          board[x][y + i] = val;
         }
       } else if (direction === "V") {
         for (let i = 0; i < shipSize; i++) {
-          board[x + i][y] = val; // Mark the cells with the ship's size
+          board[x + i][y] = val;
         }
       }
       placed = true;
@@ -63,9 +63,9 @@ function placeShip(board, shipSize, val = 1) {
 function randomShipPlacement(board, setBoard, val = 1) {
   const newBoard = Array.from({ length: BOARD_SIZE }, () =>
     Array(BOARD_SIZE).fill(0)
-  ); // Create a copy of the initial board
+  );
   SHIP_SIZES.forEach((shipSize) => {
-    placeShip(newBoard, shipSize, val); // Place the ship on the copied board
+    placeShip(newBoard, shipSize, val);
   });
   setBoard(newBoard);
 }
@@ -76,17 +76,15 @@ export const useNormalContext = () => {
 
 export const NormalProvider = ({ children }) => {
   const [timeElapsed, setTimeElapsed] = useState(0);
-  const [timerRunning, setTimerRunning] = useState(true);
+  const [timerRunning, setTimerRunning] = useState(false);
   const [myShipsSunk, setMyShipsSunk] = useState(0);
   const [opShipsSunk, setOpShipsSunk] = useState(0);
 
   useEffect(() => {
     if (timerRunning) {
       const timerInterval = setInterval(() => {
-        setTimeElapsed((prevTime) => prevTime + 1); // Increment the time every second
+        setTimeElapsed((prevTime) => prevTime + 1);
       }, 1000);
-
-      // Cleanup the interval when the component unmounts or when the timer stops
       return () => clearInterval(timerInterval);
     }
   }, [timerRunning]);
@@ -106,6 +104,19 @@ export const NormalProvider = ({ children }) => {
   const [opBoardUI, setOpBoardUI] = useState(
     Array.from({ length: BOARD_SIZE }, () => Array(BOARD_SIZE).fill(0))
   );
+
+  const [modalTitle, setModalTitle] = useState("");
+  const [modalContent, setModalContent] = useState("");
+
+  const [showModal, setShowModal] = useState(false);
+  const closeModal = () => {
+    setShowModal(false);
+    setTimerRunning(false);
+  };
+
+  const startTimer = () => {
+    setTimerRunning(true);
+  };
 
   useEffect(() => {
     randomShipPlacement(opBoard, setOpBoard);
@@ -128,9 +139,9 @@ export const NormalProvider = ({ children }) => {
   const handleOpBoardClick = (row, col) => {
     const newCellStates = [...opBoardUI];
     if (opBoard[row][col] === 0) {
-      newCellStates[row][col] = 2; // Mark as miss (empty space clicked)
+      newCellStates[row][col] = 2;
     } else if (opBoard[row][col] === 1) {
-      newCellStates[row][col] = 3; // Mark as hit (ship clicked)
+      newCellStates[row][col] = 3;
       setOpShipsSunk((count) => count + 1);
     }
     setOpBoardUI(newCellStates);
@@ -140,23 +151,39 @@ export const NormalProvider = ({ children }) => {
       if (myShipsSunk < 17) {
         const { row, col } = AIgame(myBoard);
         if (myBoard[row][col] === 0) {
-          newCellStates[row][col] = 2; // Mark as miss (empty space clicked)
+          newCellStates[row][col] = 2;
         } else if (myBoard[row][col] === 2) {
-          newCellStates[row][col] = 3; // Mark as hit (ship clicked)
+          newCellStates[row][col] = 3;
           setMyShipsSunk((count) => count + 1);
         }
         myBoard[row][col] = 5;
         setMyBoard(myBoard);
         setMyBoardUI(newCellStates);
       }
-    }, 500); // Update the cell state
+    }, 500);
   };
 
   useEffect(() => {
-    if (opShipsSunk === 17 || myShipsSunk === 17) {
-      setTimerRunning(false); // Stops the timer if either player's ships are sunk
+    if (opShipsSunk === 17) {
+      console.log("Here");
+      setModalTitle("Congratulations!");
+      setModalContent(`You have sunk all the ships in ${timeElapsed} seconds!`);
+      setTimerRunning(false);
+    }
+    if (myShipsSunk === 17) {
+      console.log("There");
+      setModalTitle("Game Over!");
+      setModalContent(`You have lost the game in ${timeElapsed} seconds!`);
+      setTimerRunning(false);
     }
   }, [myShipsSunk, opShipsSunk]);
+
+  useEffect(() => {
+    if (opShipsSunk === 17 || myShipsSunk === 17) {
+      console.log(modalTitle, modalContent);
+      setShowModal(true);
+    }
+  }, [modalTitle, modalContent]);
 
   return (
     <NormalContext.Provider
@@ -170,6 +197,11 @@ export const NormalProvider = ({ children }) => {
         handleOpBoardClick,
         myShipsSunk,
         opShipsSunk,
+        showModal,
+        closeModal,
+        modalTitle,
+        modalContent,
+        startTimer,
       }}
     >
       {children}

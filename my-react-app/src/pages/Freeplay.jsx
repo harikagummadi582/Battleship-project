@@ -29,17 +29,20 @@ function Freeplay() {
   return (
     <>
       <Navbar />
-      <div className="container ">
+      <div
+        className="container"
+        style={{ filter: showModal ? "blur(5px)" : "none" }}
+      >
         <h1>Freeplay</h1>
         <Timer timeElapsed={timeElapsed} />
         <Board cellStates={cellStates} handleCellClick={handleCellClick} />
-        <Modal
-          showModal={showModal}
-          closeModal={closeModal}
-          title={modalTitle}
-          message={modalContent}
-        />
       </div>
+      <Modal
+        showModal={showModal}
+        closeModal={closeModal}
+        title={modalTitle}
+        message={modalContent}
+      />
     </>
   );
 }
