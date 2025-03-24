@@ -8,7 +8,8 @@ import Modal from "../components/Modal";
 import Timer from "../components/Timer";
 
 function Normal() {
-  const [showModal, setShowModal] = useState(false);
+  const { showModal, closeModal, modalTitle, modalContent, startTimer } =
+    useNormalContext();
   const { myBoard, handleMyBoardClick, myShipRandom, myBoardUI } =
     useNormalContext();
   const { opBoardUI, handleOpBoardClick, myShipsSunk, opShipsSunk } =
@@ -16,31 +17,16 @@ function Normal() {
   const [buildShipModal, setShipModal] = useState(true);
   const closeBuildShipModal = () => {
     setShipModal(false);
+    startTimer();
   };
   const { timeElapsed } = useNormalContext();
-  let modalTitle = "Congratulations!";
-  let modalContent = `You have sunk all the ships in ${timeElapsed} seconds!`;
-
-  // useEffect(() => {
-  //   if (opShipsSunk === 17) {
-  //     setShowModal(true);
-  //   }
-  //  }, [opShipsSunk]);
-
-  //  useEffect(() => {
-  //   if (myShipsSunk === 17) {
-  //     modalTitle = "Game Over!";
-  //     modalContent = `You have lost the game in ${timeElapsed} seconds!`;
-  //     setShowModal(true);
-  //   }
-  //  }, [myShipsSunk]);
 
   return (
     <>
       <Navbar />
       <div
         className="container"
-        style={{ filter: buildShipModal ? "blur(5px)" : "none" }}
+        style={{ filter: buildShipModal || showModal ? "blur(5px)" : "none" }}
       >
         <Timer timeElapsed={timeElapsed} />
         <h1>Normal</h1>
@@ -51,9 +37,9 @@ function Normal() {
       </div>
       <Modal
         showModal={showModal}
-        closeModal={closeBuildShipModal}
-        title="Game Over!"
-        message={`You have lost the game in ${timeElapsed} seconds!`}
+        closeModal={closeModal}
+        title={modalTitle}
+        message={modalContent}
       />
       <div
         className={`modal fade ${buildShipModal ? "show" : ""}`}
@@ -71,13 +57,6 @@ function Normal() {
               <h5 className="modal-title" id="staticBackdropLabel">
                 Build your ship!
               </h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-                onClick={closeBuildShipModal}
-              ></button>
             </div>
             <div className="modal-body">
               <Board
