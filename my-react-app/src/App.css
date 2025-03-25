@@ -27,20 +27,6 @@ p.text-muted {
   color: #333;
 }
 
-button.btn-info {
-  background-color: #17a2b8;
-  border: none;
-  /* padding: 10px 20px; */
-  font-size: 1.2rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button.btn-info:hover {
-  background-color: #138496;
-}
-
 /* General Container for the Rules Page */
 .rules-container {
   padding: 20px;
@@ -172,7 +158,7 @@ p {
 }
 
 .highscore-table {
-  width: 80%;
+  width: 70%;
   margin: 20px auto;
   border-collapse: collapse;
 }
@@ -266,3 +252,4 @@ p {
   padding: 80px 80px; /* Add padding inside the button */
   font-size: 3 rem; /* Increase font size for readability */
 }
+

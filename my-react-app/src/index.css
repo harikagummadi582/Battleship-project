@@ -1,6 +1,6 @@
 .board {
   display: grid;
-  width: 400px;
+  width: 370px;
   grid-template-columns: repeat(10, 1fr); /* 10 columns of equal width */
   grid-template-rows: repeat(10, 1fr); /* 10 rows of equal height */
   gap: 5px;
@@ -8,6 +8,7 @@
 
 /* This class will make the container take up the full screen height */
 .normal-container {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center; /* Center vertically */
@@ -22,7 +23,7 @@
   grid-template-columns: repeat(10, 1fr); /* 10 columns of equal width */
   grid-template-rows: repeat(10, 1fr); /* 10 rows of equal height */
   gap: 5px;
-  width: 400px; /* Fixed width for the board */
+  width: 370px; /* Fixed width for the board */
   margin-bottom: 20px; /* Space between board and content below */
 }
 
@@ -35,6 +36,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.cell.btn:hover {
+  background-color: #b0b0b0;
+}
+
+.cell.btn:disabled {
+  filter: none;
 }
 
 .button-text {
