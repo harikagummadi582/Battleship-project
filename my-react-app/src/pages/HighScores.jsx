@@ -26,8 +26,6 @@ function Highscore() {
       <div className="container">
         <h1>HighScores</h1>
         <p>These are the top scores</p>
-
-        {/* Table to display the high scores */}
         <table className="highscore-table">
           <thead>
             <tr>
@@ -39,7 +37,7 @@ function Highscore() {
           <tbody>
             {sortedScores.map((score, index) => (
               <tr key={index}>
-                <td>{index + 1}</td> {/* Rank starts from 1 */}
+                <td>{index + 1}</td>
                 <td>{score.name}</td>
                 <td>{score.score}</td>
               </tr>

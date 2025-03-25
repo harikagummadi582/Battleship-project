@@ -8,6 +8,7 @@
 
 /* This class will make the container take up the full screen height */
 .normal-container {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center; /* Center vertically */

@@ -15,9 +15,9 @@ const Board = ({ cellStates, handleCellClick ,getButtonClass}) => {
           key={`${i}-${j}`}
           row={i}
           col={j}
-          clicked={cellStates[i][j]} // Pass the clicked state of each cell
+          clicked={cellStates[i][j]} 
           onClick={handleCellClick} 
-          getButtonClass={getButtonClass}// Pass the handleCellClick function
+          getButtonClass={getButtonClass}
         />
       );
     }

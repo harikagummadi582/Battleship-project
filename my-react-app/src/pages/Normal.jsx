@@ -23,10 +23,18 @@ function Normal() {
     useNormalContext();
   const [buildShipModal, setShipModal] = useState(true);
   const closeBuildShipModal = () => {
-    setShipModal(false);
-    startTimer();
+    if (!hasBoardChanged()) {
+      alert("Please place your ship on the board!");
+      return;
+    } else {
+      setShipModal(false);
+      startTimer();
+    }
   };
   const { timeElapsed } = useNormalContext();
+  function hasBoardChanged() {
+    return myBoard.some((row) => row.some((cell) => cell !== 0));
+  }
 
   return (
     <>
