@@ -4,15 +4,16 @@ const BOARD_SIZE = 10; // Size of the board
 const SHIP_SIZES = [5, 4, 3, 3, 2]; // Ship sizes
 const shipToSink = 17;
 const NormalContext = createContext();
+const randomness = 0.7;
 
 function AIgame(board) {
   let row = 0,
     col = 0;
-  const pick = Math.random() < 0.7 ? 0 : 2;
+  const pick = Math.random() < randomness ? [0] : [2, 3, 4, 5];
   while (true) {
     row = Math.floor(Math.random() * BOARD_SIZE);
     col = Math.floor(Math.random() * BOARD_SIZE);
-    if (board[row][col] === pick) {
+    if (pick.includes(board[row][col])) {
       return { row: row, col: col };
     }
   }
@@ -37,7 +38,7 @@ function canPlaceShip(board, shipSize, x, y, direction) {
 }
 
 // Function to place a ship on the board, 1 == ship, 0 == empty
-function placeShip(board, shipSize, val = 1) {
+function placeShip(board, shipSize) {
   let placed = false;
   while (!placed) {
     const direction = Math.random() < 0.5 ? "H" : "V";
@@ -48,11 +49,11 @@ function placeShip(board, shipSize, val = 1) {
       // Place the ship on the board
       if (direction === "H") {
         for (let i = 0; i < shipSize; i++) {
-          board[x][y + i] = val;
+          board[x][y + i] = shipSize;
         }
       } else if (direction === "V") {
         for (let i = 0; i < shipSize; i++) {
-          board[x + i][y] = val;
+          board[x + i][y] = shipSize;
         }
       }
       placed = true;
@@ -60,12 +61,12 @@ function placeShip(board, shipSize, val = 1) {
   }
 }
 
-function randomShipPlacement(board, setBoard, val = 1) {
+function randomShipPlacement(board, setBoard) {
   const newBoard = Array.from({ length: BOARD_SIZE }, () =>
     Array(BOARD_SIZE).fill(0)
   );
   SHIP_SIZES.forEach((shipSize) => {
-    placeShip(newBoard, shipSize, val);
+    placeShip(newBoard, shipSize);
   });
   setBoard(newBoard);
 }
@@ -126,39 +127,41 @@ export const NormalProvider = ({ children }) => {
     console.log("OpBoard", opBoard);
   }, [opBoard]);
 
-  useEffect(() => {
-    console.log("MyBoard", myBoard);
-  }, [myBoard]);
-
   const myShipRandom = () => {
-    randomShipPlacement(myBoard, setMyBoard, 2);
+    randomShipPlacement(myBoard, setMyBoard);
   };
 
   const handleMyBoardClick = (r, c) => {};
 
-  const handleOpBoardClick = (row, col) => {
-    const newCellStates = [...opBoardUI];
-    if (opBoard[row][col] === 0) {
-      newCellStates[row][col] = 2;
-    } else if (opBoard[row][col] === 1) {
-      newCellStates[row][col] = 3;
-      setOpShipsSunk((count) => count + 1);
+  function BoardOperation(row, col, board, shipCount, cellStates) {
+    if (board[row][col] === 0) {
+      cellStates[row][col] = 1;
+    } else {
+      if (board[row][col] === 2) {
+        cellStates[row][col] = 2;
+      } else if (board[row][col] === 3) {
+        cellStates[row][col] = 3;
+      } else if (board[row][col] === 4) {
+        cellStates[row][col] = 4;
+      } else if (board[row][col] === 5) {
+        cellStates[row][col] = 5;
+      }
+      shipCount((x) => x + 1);
     }
-    setOpBoardUI(newCellStates);
+  }
 
+  const handleOpBoardClick = (row, col) => {
+    const newOPCellStates = [...opBoardUI];
+    BoardOperation(row, col, opBoard, setOpShipsSunk, newOPCellStates);
+    setOpBoardUI(newOPCellStates);
     setTimeout(() => {
-      const newCellStates = [...myBoardUI];
-      if (myShipsSunk < shipToSink) {
+      const newMyCellStates = [...myBoardUI];
+      if (opShipsSunk !== 17 && myShipsSunk < shipToSink) {
         const { row, col } = AIgame(myBoard);
-        if (myBoard[row][col] === 0) {
-          newCellStates[row][col] = 2;
-        } else if (myBoard[row][col] === 2) {
-          newCellStates[row][col] = 3;
-          setMyShipsSunk((count) => count + 1);
-        }
-        myBoard[row][col] = 5;
+        BoardOperation(row, col, myBoard, setMyShipsSunk, newMyCellStates);
+        myBoard[row][col] = 10;
         setMyBoard(myBoard);
-        setMyBoardUI(newCellStates);
+        setMyBoardUI(newMyCellStates);
       }
     }, 500);
   };
@@ -169,16 +172,35 @@ export const NormalProvider = ({ children }) => {
       setModalContent(`You have sunk all the ships in ${timeElapsed} seconds!`);
       setTimerRunning(false);
     }
+  }, [opShipsSunk]);
+
+  useEffect(() => {
     if (myShipsSunk === shipToSink) {
       setModalTitle("Game Over!");
       setModalContent(`You have lost the game in ${timeElapsed} seconds!`);
       setTimerRunning(false);
     }
-  }, [myShipsSunk, opShipsSunk]);
+  }, [myShipsSunk]);
+
+  const getButtonClass = (clicked) => {
+    if (clicked === 0) {
+      return ""; // Default or Ship cell
+    } else if (clicked === 1) {
+      return "btn-danger"; // Miss
+    } else if (clicked === 2) {
+      return "btn-success";
+    } else if (clicked === 3) {
+      return "btn-warning";
+    } else if (clicked === 4) {
+      return "btn-primary";
+    } else if (clicked === 5) {
+      return "btn-info";
+    }
+    return ""; // In case of any unexpected value
+  };
 
   useEffect(() => {
     if (opShipsSunk === shipToSink || myShipsSunk === shipToSink) {
-      console.log(modalTitle, modalContent);
       setShowModal(true);
     }
   }, [modalTitle, modalContent]);
@@ -200,6 +222,7 @@ export const NormalProvider = ({ children }) => {
         modalTitle,
         modalContent,
         startTimer,
+        getButtonClass,
       }}
     >
       {children}

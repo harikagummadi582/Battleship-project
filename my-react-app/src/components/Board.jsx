@@ -2,7 +2,7 @@ import React, { use } from "react";
 import Cell from "./Cell";
 import { useFreeplayContext } from "../context/FreeplayContext";
 
-const Board = ({ cellStates, handleCellClick }) => {
+const Board = ({ cellStates, handleCellClick ,getButtonClass}) => {
   const rows = 10;
   const cols = 10;
 
@@ -16,7 +16,8 @@ const Board = ({ cellStates, handleCellClick }) => {
           row={i}
           col={j}
           clicked={cellStates[i][j]} // Pass the clicked state of each cell
-          onClick={handleCellClick} // Pass the handleCellClick function
+          onClick={handleCellClick} 
+          getButtonClass={getButtonClass}// Pass the handleCellClick function
         />
       );
     }
