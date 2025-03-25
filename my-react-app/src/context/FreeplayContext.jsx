@@ -33,11 +33,11 @@ function placeShip(board, shipSize) {
       // Place the ship on the board
       if (direction === "H") {
         for (let i = 0; i < shipSize; i++) {
-          board[x][y + i] = 1; // Mark the cells with the ship's size
+          board[x][y + i] = shipSize; // Mark the cells with the ship's size
         }
       } else if (direction === "V") {
         for (let i = 0; i < shipSize; i++) {
-          board[x + i][y] = 1; // Mark the cells with the ship's size
+          board[x + i][y] = shipSize; // Mark the cells with the ship's size
         }
       }
       placed = true;
@@ -81,9 +81,17 @@ export const FreeplayProvider = ({ children }) => {
   const handleCellClick = (row, col) => {
     const newCellStates = [...cellStates];
     if (board[row][col] === 0) {
-      newCellStates[row][col] = 2; // Mark as miss (empty space clicked)
-    } else if (board[row][col] === 1) {
-      newCellStates[row][col] = 3; // Mark as hit (ship clicked)
+      newCellStates[row][col] = 1; // Mark as miss (empty space clicked)
+    } else if (board[row][col] >= 2 && board[row][col] <= 5) {
+      if (board[row][col] === 2) {
+        newCellStates[row][col] = 2; // Mark as hit (ship clicked)
+      } else if (board[row][col] === 3) {
+        newCellStates[row][col] = 3; // Mark as hit (ship clicked)
+      } else if (board[row][col] === 4) {
+        newCellStates[row][col] = 4; // Mark as hit (ship clicked)
+      } else if (board[row][col] === 5) {
+        newCellStates[row][col] = 5; // Mark as hit (ship clicked)
+      }
       setShipsSunk((count) => count + 1); // Increment the number of ships sunk
     }
     setCellStates(newCellStates); // Update the cell state
@@ -111,9 +119,33 @@ export const FreeplayProvider = ({ children }) => {
     }
   }, [shipsSunk]);
 
+  const getButtonClass = (clicked) => {
+    if (clicked === 0) {
+      return ""; // Default or Ship cell
+    } else if (clicked === 1) {
+      return "btn-danger"; // Miss
+    } else if (clicked === 2) {
+      return "btn-success"; // Miss
+    } else if (clicked === 3) {
+      return "btn-warning"; // Hit
+    } else if (clicked === 4) {
+      return "btn-primary"; // Hit
+    } else if (clicked === 5) {
+      return "btn-info"; // Hit
+    }
+    return ""; // In case of any unexpected value
+  };
+
   return (
     <FreeplayContext.Provider
-      value={{ board, shipsSunk, cellStates, handleCellClick, timeElapsed }}
+      value={{
+        board,
+        shipsSunk,
+        cellStates,
+        handleCellClick,
+        timeElapsed,
+        getButtonClass,
+      }}
     >
       {children}
     </FreeplayContext.Provider>

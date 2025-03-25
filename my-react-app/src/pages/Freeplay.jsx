@@ -8,8 +8,10 @@ import {
 import { Link } from "react-router-dom";
 import Timer from "../components/Timer";
 import Modal from "../components/Modal";
+import RefreshButton from "../components/RefreshBtn";
 function Freeplay() {
   const { shipsSunk } = useFreeplayContext();
+  const { getButtonClass } = useFreeplayContext();
   const { timeElapsed } = useFreeplayContext();
   const [showModal, setShowModal] = useState(false);
   const { cellStates, handleCellClick } = useFreeplayContext();
@@ -36,7 +38,12 @@ function Freeplay() {
         <h1>Freeplay</h1>
         <Timer timeElapsed={timeElapsed} />
         <center>
-          <Board cellStates={cellStates} handleCellClick={handleCellClick} />
+          <Board
+            cellStates={cellStates}
+            handleCellClick={handleCellClick}
+            getButtonClass={getButtonClass}
+          />
+          <RefreshButton />
         </center>
       </div>
       <Modal

@@ -6,10 +6,17 @@ import { NormalProvider, useNormalContext } from "../context/NormalContext";
 import Board from "../components/Board";
 import Modal from "../components/Modal";
 import Timer from "../components/Timer";
+import RefreshButton from "../components/RefreshBtn";
 
 function Normal() {
-  const { showModal, closeModal, modalTitle, modalContent, startTimer } =
-    useNormalContext();
+  const {
+    showModal,
+    closeModal,
+    modalTitle,
+    modalContent,
+    startTimer,
+    getButtonClass,
+  } = useNormalContext();
   const { myBoard, handleMyBoardClick, myShipRandom, myBoardUI } =
     useNormalContext();
   const { opBoardUI, handleOpBoardClick, myShipsSunk, opShipsSunk } =
@@ -30,10 +37,19 @@ function Normal() {
       >
         <Timer timeElapsed={timeElapsed} />
         <h1>Normal</h1>
-        <h2>Opponent Board </h2>
-        <Board cellStates={opBoardUI} handleCellClick={handleOpBoardClick} />
-        <h2>My Board </h2>
-        <Board cellStates={myBoardUI} handleCellClick={handleMyBoardClick} />
+        <h2>Opponent Board</h2>
+        <Board
+          cellStates={opBoardUI}
+          handleCellClick={handleOpBoardClick}
+          getButtonClass={getButtonClass}
+        />
+        <h2>My Board</h2>
+        <Board
+          cellStates={myBoardUI}
+          handleCellClick={handleMyBoardClick}
+          getButtonClass={getButtonClass}
+        />
+        <RefreshButton />
       </div>
       <Modal
         showModal={showModal}
@@ -63,6 +79,7 @@ function Normal() {
                 <Board
                   cellStates={myBoard}
                   handleCellClick={handleMyBoardClick}
+                  getButtonClass={getButtonClass}
                 />
               </center>
             </div>
