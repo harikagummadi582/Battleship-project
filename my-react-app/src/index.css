@@ -58,3 +58,23 @@
 .reset {
   margin-top: 20px;
 }
+
+.board-wrapper {
+  display: flex;
+  flex-direction: row; /* Ensures horizontal layout */
+  justify-content: center; /* Centers the items horizontally */
+  gap: 100px; /* Controls the space between the boards */
+  margin-top: 20px;
+}
+
+.large-title{
+  font-size: 40px;
+
+}
+h2{
+  text-align: center;
+
+}
+.small-title{
+  font-size: 20px;
+}

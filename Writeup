@@ -1,0 +1,41 @@
+1. What were some challenges you faced while making this app?
+
+While developing this app, we encountered several challenges, primarily in the following areas:
+
+> > Making Components Reusable:
+> > Designing components like Board and Modal to be reusable was a significant challenge. We ensured flexibility by using props and managing state with useContext, reducing redundancy and making the code cleaner.
+
+> > Writing Clean Code:
+> > Maintaining clean and maintainable code while handling game logic, UI components, and state management was challenging. Following best practices like component reusability, modular design, and meaningful function naming helped overcome this.
+
+2. Given more time, what additional features, functional or design changes would you make?
+
+If we had more time, we would enhance the app with the following features:
+
+> > Local Storage Integration:
+> > Implement local storage to save game progress, allowing users to resume their game later without losing progress.
+
+> > Click and Drag Ship Placement:
+> > Introduce a drag-and-drop interface for ship placement. This would improve user experience and make ship positioning more intuitive.
+
+> > Improved Navigation:
+> > Enhance navigation by reducing URL changes and using modals or conditional rendering instead. Adding smooth transitions would create a more seamless user experience.
+
+> > Sound Effects and Animations:
+> > Add sound effects for hits, misses, and ship placements, along with animations for ship movements and explosions.
+
+> > Multiplayer Mode:
+> > Implement a real-time multiplayer mode using WebSockets for users to compete with friends or random opponents.
+
+3. What assumptions did you make while working on this assignment?
+
+We assumed the app would have separate pages for game modes and gameplay, simplifying routing with React Router. Users would prefer an easy-to-use interface for ship placement, so we implemented both manual and random ship placement options. The game would follow a turn-based system where players alternate moves until one side wins. The opponent's moves are automated using a simple AI, without the need for a complex algorithm.
+
+4. How long did this assignment take to complete?
+
+The assignment took approximately 30 hours to complete, distributed as follows:
+Planning and Designing (5 hours): Creating wireframes and determining the overall design and user flow.
+Component Development (10 hours): Building reusable components like Board, Timer, and Modal.
+Game Logic Implementation (8 hours): Developing ship placement, hit detection, and game state management.
+Styling and UI Enhancements (4 hours): Writing CSS for responsiveness and enhancing visual appeal.
+Testing and Debugging (3 hours): Conducting unit testing, fixing bugs, and optimizing performance.

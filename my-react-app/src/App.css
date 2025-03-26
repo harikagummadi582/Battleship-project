@@ -12,18 +12,19 @@
   flex-direction: column; /* Stack the content vertically */
   justify-content: center; /* Center content vertically */
   align-items: center; /* Center content horizontally */
-  height: 100vh; /* Take the full height of the viewport */
+  height: 90vh; /* Take the full height of the viewport */
+  width: 100vh;
   text-align: center;
 }
 
 h1.text-primary {
-  font-size: 10rem;
+  font-size: 5rem;
   color: #007bff;
   margin-bottom: 20px;
 }
 
 p.text-muted {
-  font-size: 1.2rem;
+  font-size: 1.7rem;
   color: #333;
 }
 
@@ -144,6 +145,7 @@ ul li strong {
   text-align: center;
   padding: 20px;
   background-color: #e6f7ff;
+  border-radius: 10px;
 }
 
 h1 {
@@ -184,51 +186,61 @@ p {
 }
 
 /* Navbar Styling */
-.navbar {
-  background-color: #007bff; /* Blue background color */
+/* Custom Navbar Styling */
+.navbar-custom {
+  background-color: #007bff; /* Blue background */
   padding: 15px 20px;
 }
 
 .navbar-brand {
-  color: white; /* Set brand text color to white */
-  font-size: 1.8rem; /* Increase font size for the brand */
-  font-weight: bold; /* Make the brand name bold */
-  text-transform: uppercase; /* Uppercase text for brand */
+  color: white;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .navbar-brand:hover {
-  color: black; /* Change color when hovered */
+  color: black;
 }
 
 .navbar-nav .nav-item .nav-link {
-  color: black; /* Set the text color of the links */
-  font-size: 1.2rem; /* Increase font size for nav items */
-  margin-left: 20px; /* Add some spacing between items */
+  color: black;
+  font-size: 1.2rem;
+  margin-left: 20px;
 }
 
 .navbar-nav .nav-item .nav-link:hover {
-  color: #007bff; /* Change link color when hovered */
-  text-decoration: underline; /* Underline the links on hover */
+  color: #007bff;
+  text-decoration: underline;
 }
 
+/* Active Link Styling */
+.nav-link.active {
+  color: #fff;
+  background-color: #0056b3;
+  border-radius: 8px;
+}
+
+/* Toggler Button Customization */
 .navbar-toggler {
-  border-color: #f1f1f1; /* Set a border color for the hamburger icon */
+  border-color: white;
 }
 
 .navbar-toggler-icon {
-  background-color: #f1f1f1; /* Set icon color to white */
+  filter: invert(1); /* Makes it white */
 }
 
-/* Add responsive styling if needed */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
   .navbar-nav .nav-item {
-    margin-left: 0; /* Remove left margin on smaller screens */
+    margin-left: 0;
   }
 
   .navbar-brand {
-    font-size: 1.5rem; /* Reduce font size of brand for smaller screens */
+    font-size: 1.5rem;
   }
 }
+
 
 /* Make sure the container takes up full height of the screen */
 .game-container {
@@ -236,14 +248,16 @@ p {
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
   height: 90vh; /* Take up 100% of the viewport height */
+  width: 90vh;
   text-align: center; /* Optional, for centering the text inside */
   background-color: #e6f7ff;
+  flex-direction: column;
 }
 .game-container h1 {
-  font-size: 100px;
+  font-size: 5rem;
 }
 .game-container p {
-  font-size: 30px;
+  font-size: 1.7rem;
 }
 
 /* Style for the buttons to make them look nicer */
@@ -251,5 +265,11 @@ p {
   margin: 20px; /* Add spacing between the buttons */
   padding: 80px 80px; /* Add padding inside the button */
   font-size: 3 rem; /* Increase font size for readability */
+}
+
+.button-container {
+  display: flex; /* Make buttons side-by-side */
+  justify-content: center; /* Center the buttons horizontally */
+  gap: 5px; /* Add space between buttons */
 }
 

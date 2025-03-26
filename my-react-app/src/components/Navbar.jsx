@@ -1,14 +1,14 @@
-// Navbar.js
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import "../App.css"; // Assuming this is the CSS file location
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-expand-lg navbar-custom">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
+        <NavLink className="navbar-brand" to="/">
           Battleship
-        </Link>
+        </NavLink>
         <button
           className="navbar-toggler"
           type="button"
@@ -23,19 +23,19 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">
+              <NavLink className="nav-link" to="/" end>
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/rules">
+              <NavLink className="nav-link" to="/rules">
                 Rules
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/scores">
+              <NavLink className="nav-link" to="/scores">
                 Scores
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -43,4 +43,5 @@ const Navbar = () => {
     </nav>
   );
 };
+
 export default Navbar;

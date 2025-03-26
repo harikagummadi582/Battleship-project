@@ -16,19 +16,21 @@ function Game() {
   return (
     <>
       <Navbar />
-      <div className="container">
-        <h1>Game</h1>
-        <p>This is the game page</p>
+      <div className="container game-container">
+        <h1>Types of Games</h1>
+        <p>Choose a game type to play!</p>
+        <div className="button-container">
         <Link to="/game/normal">
-          <button type="button" className="btn btn-info" onClick={openModal}>
+          <button type="button" className="btn btn-info game-btn" onClick={openModal}>
             Normal
           </button>
         </Link>
         <Link to="/game/freeplay">
-          <button type="button" className="btn btn-info">
+          <button type="button" className="btn btn-info game-btn">
             Freeplay
           </button>
         </Link>
+        </div>
       </div>
     </>
   );

@@ -7,6 +7,7 @@ import Board from "../components/Board";
 import Modal from "../components/Modal";
 import Timer from "../components/Timer";
 import RefreshButton from "../components/RefreshBtn";
+import "../index.css";
 
 function Normal() {
   const {
@@ -44,19 +45,25 @@ function Normal() {
         style={{ filter: buildShipModal || showModal ? "blur(5px)" : "none" }}
       >
         <Timer timeElapsed={timeElapsed} />
-        <h1>Normal</h1>
-        <h2>Opponent Board</h2>
+        <div className="board-wrapper">
+          <div>
+        
+        <h1 className="large-title">Normal Game</h1>
+        <h2 className="small-title">Opponent Board</h2>
         <Board
           cellStates={opBoardUI}
           handleCellClick={handleOpBoardClick}
           getButtonClass={getButtonClass}
         />
-        <h2>My Board</h2>
+        <h2 className="small-title">My Board</h2>
         <Board
           cellStates={myBoardUI}
           handleCellClick={handleMyBoardClick}
           getButtonClass={getButtonClass}
         />
+        </div>
+        </div>
+        
         <RefreshButton />
       </div>
       <Modal

@@ -7,9 +7,9 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="container">
-        <h1>Homepage</h1>
-        <p>This is the homepage</p>
+      <div className="container container-home">
+        <h1 className="text-primary">Battleship Game</h1>
+        <p className="text-muted">Let's get started!</p>
         <Link to="/game">
           <button type="button" className="btn btn-info">
             Start Game
