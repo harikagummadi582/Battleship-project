@@ -1,38 +1,38 @@
 .board {
   display: grid;
   width: 370px;
-  grid-template-columns: repeat(10, 1fr); /* 10 columns of equal width */
-  grid-template-rows: repeat(10, 1fr); /* 10 rows of equal height */
+  grid-template-columns: repeat(10, 1fr); 
+  grid-template-rows: repeat(10, 1fr); 
   gap: 5px;
 }
 
-/* This class will make the container take up the full screen height */
+
 .normal-container {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center vertically */
-  align-items: center; /* Center horizontally */
-  height: 100vh; /* Full screen height */
+  justify-content: center; 
+  align-items: center; 
+  height: 100vh; 
   padding: 20px;
 }
 
-/* Board container will hold the grid layout for the board */
+
 .board-container {
   display: grid;
-  grid-template-columns: repeat(10, 1fr); /* 10 columns of equal width */
-  grid-template-rows: repeat(10, 1fr); /* 10 rows of equal height */
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);  
   gap: 5px;
-  width: 370px; /* Fixed width for the board */
-  margin-bottom: 20px; /* Space between board and content below */
+  width: 370px; 
+  margin-bottom: 20px; 
 }
 
-/* Style for each cell */
+
 .cell.btn {
   width: 25px;
   height: 25px;
   background-color: rgb(152, 152, 152);
-  color: white; /* Text color */
+  color: white; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,19 +51,16 @@
   justify-content: center;
   align-items: center;
 }
-/* Optional: Add hover effect or styles for cells */
-.cell:hover {
-  background-color: #b0b0b0;
-}
+
 .reset {
   margin-top: 20px;
 }
 
 .board-wrapper {
   display: flex;
-  flex-direction: row; /* Ensures horizontal layout */
-  justify-content: center; /* Centers the items horizontally */
-  gap: 100px; /* Controls the space between the boards */
+  flex-direction: row; 
+  justify-content: center; 
+  gap: 100px; 
   margin-top: 20px;
 }
 

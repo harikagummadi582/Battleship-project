@@ -3,7 +3,7 @@ import CircleIcon from "@mui/icons-material/Circle";
 import CloseIcon from "@mui/icons-material/Close";
 function Cell({ row, col, clicked, onClick, getButtonClass }) {
   const handleClick = () => {
-    onClick(row, col); // Trigger the onClick handler from context
+    onClick(row, col); 
   };
 
   return (

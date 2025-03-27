@@ -1,18 +1,18 @@
 /* Optional: Change background color for the entire app container */
 .container-home {
-  background-color: #e6f7ff; /* White background for the container */
+  background-color: #e6f7ff; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for a card-like effect */
   border-radius: 10px;
   padding: 20px;
 }
 
-/* Home page styling */
+
 .container-home {
   display: flex;
-  flex-direction: column; /* Stack the content vertically */
-  justify-content: center; /* Center content vertically */
-  align-items: center; /* Center content horizontally */
-  height: 90vh; /* Take the full height of the viewport */
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  height: 90vh; 
   width: 100vh;
   text-align: center;
 }
@@ -28,7 +28,7 @@ p.text-muted {
   color: #333;
 }
 
-/* General Container for the Rules Page */
+
 .rules-container {
   padding: 20px;
   margin: 20px;
@@ -39,7 +39,7 @@ p.text-muted {
   text-align: left;
 }
 
-/* Title of the Rules Section */
+
 .rules-title {
   font-size: 2.5rem;
   color: #333;
@@ -47,7 +47,7 @@ p.text-muted {
   margin-bottom: 20px;
 }
 
-/* Text Content for the Rules */
+
 .rules-text {
   font-size: 1.1rem;
   color: #555;
@@ -59,15 +59,15 @@ p.text-muted {
   font-size: 1.8rem;
   color: #2c3e50;
   margin-bottom: 10px;
-  text-align: left; /* Align the headings to the left */
+  text-align: left; 
 }
 
-/* Styling for each section in the Rules */
+
 .rules-section {
   margin-bottom: 25px;
 }
 
-/* Section Title */
+
 .rules-section h2 {
   font-size: 1.8rem;
   color: #2980b9;
@@ -76,14 +76,14 @@ p.text-muted {
   margin-bottom: 10px;
 }
 
-/* Styling for Paragraph Text Inside the Sections */
+
 .rules-section p {
   font-size: 1.1rem;
   color: #333;
   line-height: 1.5;
 }
 
-/* List for Game Types */
+
 .rules-section ul {
   list-style-type: disc;
   padding-left: 20px;
@@ -95,13 +95,13 @@ p.text-muted {
   margin-bottom: 10px;
 }
 
-/* Highlighting Strong Text */
+
 strong {
   color: #2980b9;
   font-weight: bold;
 }
 
-/* Responsive Styling */
+
 @media (max-width: 768px) {
   .rules-container {
     padding: 15px;
@@ -121,11 +121,11 @@ strong {
   }
 }
 
-/* Make bullet points appear immediately after the bullet */
+
 ul {
-  list-style-type: disc; /* Disc bullets */
-  padding-left: 0; /* Remove padding for better alignment */
-  margin-left: 0; /* Remove margin to align text properly */
+  list-style-type: disc; 
+  padding-left: 0; 
+  margin-left: 0; 
 }
 
 ul li {
@@ -139,7 +139,7 @@ ul li strong {
   font-weight: bold;
 }
 
-/* Highscore tab styling */
+
 .container {
   margin-top: 20px;
   text-align: center;
@@ -185,10 +185,10 @@ p {
   background-color: #f1f1f1;
 }
 
-/* Navbar Styling */
-/* Custom Navbar Styling */
+
+
 .navbar-custom {
-  background-color: #007bff; /* Blue background */
+  background-color: #007bff; 
   padding: 15px 20px;
 }
 
@@ -214,23 +214,23 @@ p {
   text-decoration: underline;
 }
 
-/* Active Link Styling */
+
 .nav-link.active {
   color: #fff;
   background-color: #0056b3;
   border-radius: 8px;
 }
 
-/* Toggler Button Customization */
+
 .navbar-toggler {
   border-color: white;
 }
 
 .navbar-toggler-icon {
-  filter: invert(1); /* Makes it white */
+  filter: invert(1); 
 }
 
-/* Responsive Adjustments */
+
 @media (max-width: 768px) {
   .navbar-nav .nav-item {
     margin-left: 0;
@@ -242,11 +242,11 @@ p {
 }
 
 
-/* Make sure the container takes up full height of the screen */
+
 .game-container {
-  display: flex; /* Enable Flexbox */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
   height: 90vh; /* Take up 100% of the viewport height */
   width: 90vh;
   text-align: center; /* Optional, for centering the text inside */
@@ -260,16 +260,16 @@ p {
   font-size: 1.7rem;
 }
 
-/* Style for the buttons to make them look nicer */
+
 .game-btn {
-  margin: 20px; /* Add spacing between the buttons */
-  padding: 80px 80px; /* Add padding inside the button */
-  font-size: 3 rem; /* Increase font size for readability */
+  margin: 20px; 
+  padding: 80px 80px; 
+  font-size: 3 rem; 
 }
 
 .button-container {
   display: flex; /* Make buttons side-by-side */
-  justify-content: center; /* Center the buttons horizontally */
-  gap: 5px; /* Add space between buttons */
+  justify-content: center; 
+  gap: 5px; 
 }
 

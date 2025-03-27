@@ -1,21 +1,21 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-const BOARD_SIZE = 10; // Size of the board
-const SHIP_SIZES = [5, 4, 3, 3, 2]; // Ship sizes
+const BOARD_SIZE = 10; 
+const SHIP_SIZES = [5, 4, 3, 3, 2]; 
 
 // Function to check if a ship can be placed at a given position
 function canPlaceShip(board, shipSize, x, y, direction) {
   if (direction === "H") {
     // Horizontal placement
-    if (y + shipSize > BOARD_SIZE) return false; // Check if it fits in the row
+    if (y + shipSize > BOARD_SIZE) return false; 
     for (let i = 0; i < shipSize; i++) {
-      if (board[x][y + i] !== 0) return false; // Check if the spot is already occupied
+      if (board[x][y + i] !== 0) return false; 
     }
   } else if (direction === "V") {
     // Vertical placement
-    if (x + shipSize > BOARD_SIZE) return false; // Check if it fits in the column
+    if (x + shipSize > BOARD_SIZE) return false; 
     for (let i = 0; i < shipSize; i++) {
-      if (board[x + i][y] !== 0) return false; // Check if the spot is already occupied
+      if (board[x + i][y] !== 0) return false; 
     }
   }
   return true;
@@ -69,13 +69,13 @@ export const FreeplayProvider = ({ children }) => {
 
   // Place ships on the board once the component is mounted
   useEffect(() => {
-    const newBoard = [...board]; // Create a copy of the initial board
+    const newBoard = [...board]; 
     SHIP_SIZES.forEach((shipSize) => {
-      placeShip(newBoard, shipSize); // Place the ship on the copied board
+      placeShip(newBoard, shipSize); 
     });
-    console.log(newBoard); // Log the board with ships placed
-    setBoard(newBoard); // Update the board state with the newly placed ships
-  }, []); // Empty dependency array means this runs only once after the first render
+    console.log(newBoard); 
+    setBoard(newBoard); 
+  }, []); 
 
   // Function to handle a cell click, toggle its state, 2==miss, 3==hit
   const handleCellClick = (row, col) => {
@@ -92,9 +92,9 @@ export const FreeplayProvider = ({ children }) => {
       } else if (board[row][col] === 5) {
         newCellStates[row][col] = 5; // Mark as hit (ship clicked)
       }
-      setShipsSunk((count) => count + 1); // Increment the number of ships sunk
+      setShipsSunk((count) => count + 1); 
     }
-    setCellStates(newCellStates); // Update the cell state
+    setCellStates(newCellStates); 
   };
 
   const [timeElapsed, setTimeElapsed] = useState(0);
@@ -103,10 +103,8 @@ export const FreeplayProvider = ({ children }) => {
   useEffect(() => {
     if (timerRunning) {
       const timerInterval = setInterval(() => {
-        setTimeElapsed((prevTime) => prevTime + 1); // Increment the time every second
+        setTimeElapsed((prevTime) => prevTime + 1); 
       }, 1000);
-
-      // Cleanup the interval when the component unmounts or when the timer stops
       return () => clearInterval(timerInterval);
     }
   }, [timerRunning]);
@@ -114,7 +112,6 @@ export const FreeplayProvider = ({ children }) => {
   // Effect to open the modal when shipsSunk reaches 17
   useEffect(() => {
     if (shipsSunk === 17) {
-      // setShowModal(true);
       setTimerRunning(false);
     }
   }, [shipsSunk]);
