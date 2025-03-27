@@ -28,7 +28,7 @@ const Modal = ({ showModal, closeModal, title, message }) => {
                 type="button"
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"
-                onClick={closeModal}
+                // onClick={closeModal}
               >
                 Home
               </button>

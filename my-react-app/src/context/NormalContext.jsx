@@ -19,7 +19,7 @@ function AIgame(board) {
   }
 }
 
-// Function to check if a ship can be placed at a given position
+
 function canPlaceShip(board, shipSize, x, y, direction) {
   if (direction === "H") {
     // Horizontal placement

@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App.jsx";
 import Rules from "./pages/Rules.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js"; // includes Popper.js as well
+import "bootstrap/dist/js/bootstrap.bundle.min.js"; 
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NotFound from "./pages/NotFound.jsx";

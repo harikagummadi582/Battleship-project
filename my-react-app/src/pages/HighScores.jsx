@@ -1,9 +1,9 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import "../App.css"; // Import the CSS file for Highscore page
+import "../App.css"; 
 
 function Highscore() {
-  // Extended list of high scores with 5 more players
+  
   const highScores = [
     { name: "Alice", score: 100 },
     { name: "Bob", score: 85 },
@@ -17,7 +17,7 @@ function Highscore() {
     { name: "Jack", score: 75 },
   ];
 
-  // Sort high scores in descending order based on score
+  
   const sortedScores = highScores.sort((a, b) => b.score - a.score);
 
   return (
