@@ -44,26 +44,25 @@ function Normal() {
         className="container"
         style={{ filter: buildShipModal || showModal ? "blur(5px)" : "none" }}
       >
+        <h1 className="large-title">Normal Game</h1>
         <Timer timeElapsed={timeElapsed} />
         <div className="board-wrapper">
           <div>
-        
-        <h1 className="large-title">Normal Game</h1>
-        <h2 className="small-title">Opponent Board</h2>
-        <Board
-          cellStates={opBoardUI}
-          handleCellClick={handleOpBoardClick}
-          getButtonClass={getButtonClass}
-        />
-        <h2 className="small-title">My Board</h2>
-        <Board
-          cellStates={myBoardUI}
-          handleCellClick={handleMyBoardClick}
-          getButtonClass={getButtonClass}
-        />
+            <h2 className="small-title">Opponent Board</h2>
+            <Board
+              cellStates={opBoardUI}
+              handleCellClick={handleOpBoardClick}
+              getButtonClass={getButtonClass}
+            />
+            <h2 className="small-title">My Board</h2>
+            <Board
+              cellStates={myBoardUI}
+              handleCellClick={handleMyBoardClick}
+              getButtonClass={getButtonClass}
+            />
+          </div>
         </div>
-        </div>
-        
+
         <RefreshButton />
       </div>
       <Modal
