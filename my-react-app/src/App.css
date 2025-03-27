@@ -1,18 +1,17 @@
 /* Optional: Change background color for the entire app container */
 .container-home {
-  background-color: #e6f7ff; 
+  background-color: #e6f7ff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for a card-like effect */
   border-radius: 10px;
   padding: 20px;
 }
 
-
 .container-home {
   display: flex;
-  flex-direction: column; 
-  justify-content: center; 
-  align-items: center; 
-  height: 90vh; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
   width: 100vh;
   text-align: center;
 }
@@ -28,7 +27,6 @@ p.text-muted {
   color: #333;
 }
 
-
 .rules-container {
   padding: 20px;
   margin: 20px;
@@ -39,14 +37,12 @@ p.text-muted {
   text-align: left;
 }
 
-
 .rules-title {
   font-size: 2.5rem;
   color: #333;
   text-align: center;
   margin-bottom: 20px;
 }
-
 
 .rules-text {
   font-size: 1.1rem;
@@ -59,14 +55,12 @@ p.text-muted {
   font-size: 1.8rem;
   color: #2c3e50;
   margin-bottom: 10px;
-  text-align: left; 
+  text-align: left;
 }
-
 
 .rules-section {
   margin-bottom: 25px;
 }
-
 
 .rules-section h2 {
   font-size: 1.8rem;
@@ -76,13 +70,11 @@ p.text-muted {
   margin-bottom: 10px;
 }
 
-
 .rules-section p {
   font-size: 1.1rem;
   color: #333;
   line-height: 1.5;
 }
-
 
 .rules-section ul {
   list-style-type: disc;
@@ -95,12 +87,10 @@ p.text-muted {
   margin-bottom: 10px;
 }
 
-
 strong {
   color: #2980b9;
   font-weight: bold;
 }
-
 
 @media (max-width: 768px) {
   .rules-container {
@@ -121,11 +111,10 @@ strong {
   }
 }
 
-
 ul {
-  list-style-type: disc; 
-  padding-left: 0; 
-  margin-left: 0; 
+  list-style-type: disc;
+  padding-left: 0;
+  margin-left: 0;
 }
 
 ul li {
@@ -139,13 +128,13 @@ ul li strong {
   font-weight: bold;
 }
 
-
 .container {
   margin-top: 20px;
   text-align: center;
   padding: 20px;
   background-color: #e6f7ff;
   border-radius: 10px;
+  min-height: 80vh;
 }
 
 h1 {
@@ -185,10 +174,8 @@ p {
   background-color: #f1f1f1;
 }
 
-
-
 .navbar-custom {
-  background-color: #007bff; 
+  background-color: #007bff;
   padding: 15px 20px;
 }
 
@@ -200,36 +187,35 @@ p {
 }
 
 .navbar-brand:hover {
-  color: black;
+  color: white;
 }
 
 .navbar-nav .nav-item .nav-link {
-  color: black;
+  color: white;
   font-size: 1.2rem;
   margin-left: 20px;
+  text-decoration: none;
 }
 
 .navbar-nav .nav-item .nav-link:hover {
-  color: #007bff;
-  text-decoration: underline;
+  color: white;
+  background-color: #68b1ff;
+  text-decoration: none;
 }
 
-
-.nav-link.active {
-  color: #fff;
+.navbar-nav .nav-item .nav-link:active {
+  color: white;
   background-color: #0056b3;
   border-radius: 8px;
 }
-
 
 .navbar-toggler {
   border-color: white;
 }
 
 .navbar-toggler-icon {
-  filter: invert(1); 
+  filter: invert(1);
 }
-
 
 @media (max-width: 768px) {
   .navbar-nav .nav-item {
@@ -241,12 +227,10 @@ p {
   }
 }
 
-
-
 .game-container {
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 90vh; /* Take up 100% of the viewport height */
   width: 90vh;
   text-align: center; /* Optional, for centering the text inside */
@@ -260,16 +244,14 @@ p {
   font-size: 1.7rem;
 }
 
-
 .game-btn {
-  margin: 20px; 
-  padding: 80px 80px; 
-  font-size: 3 rem; 
+  margin: 20px;
+  padding: 80px 80px;
+  font-size: 3 rem;
 }
 
 .button-container {
   display: flex; /* Make buttons side-by-side */
-  justify-content: center; 
-  gap: 5px; 
+  justify-content: center;
+  gap: 5px;
 }
-

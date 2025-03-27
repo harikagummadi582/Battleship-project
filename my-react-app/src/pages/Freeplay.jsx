@@ -15,7 +15,7 @@ function Freeplay() {
   const { timeElapsed } = useFreeplayContext();
   const [showModal, setShowModal] = useState(false);
   const { cellStates, handleCellClick } = useFreeplayContext();
-  
+
   const closeModal = () => {
     setShowModal(false);
   };
