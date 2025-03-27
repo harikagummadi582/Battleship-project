@@ -1,10 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "../App.css"; 
+import "../App.css";
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-custom">
+    <nav className="navbar sticky-top navbar-expand-lg navbar-custom">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
           Battleship
